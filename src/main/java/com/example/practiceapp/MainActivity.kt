@@ -26,5 +26,22 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btn1).setOnClickListener {
             addContactDialog.show()
         }
+
+        val options = arrayOf("First Item", "Second Item", "Third Item")
+        val singleChoiceDialog = AlertDialog.Builder(this)
+            .setTitle("Choose one of the options")
+            .setSingleChoiceItems(options, 0) { dialogInterface, i ->
+                Toast.makeText(this, "You checked an ${options[i]}", Toast.LENGTH_SHORT).show()
+            }
+            .setPositiveButton("Accept") { _, _ ->
+                Toast.makeText(this, "You accepted one of the options", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Decline") { _, _ ->
+                Toast.makeText(this, "You did'nt select any of the options", Toast.LENGTH_SHORT).show()
+            }.create()
+
+        findViewById<Button>(R.id.btn2).setOnClickListener {
+            singleChoiceDialog.show()
+        }
     }
 }
