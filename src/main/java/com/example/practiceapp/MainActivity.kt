@@ -43,5 +43,25 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btn2).setOnClickListener {
             singleChoiceDialog.show()
         }
+
+        val multiChoiceDialog = AlertDialog.Builder(this)
+            .setTitle("Choose one of the options")
+            .setMultiChoiceItems(options, booleanArrayOf(false, false, false)) { _, i, isChecked ->
+                if(isChecked) {
+                    Toast.makeText(this, "You checked ${options[i]}", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "You unchecked ${options[i]}", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setPositiveButton("Accept") { _, _ ->
+                Toast.makeText(this, "You accepted the Dialog", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Decline") { _, _ ->
+                Toast.makeText(this, "You declined the Dialog", Toast.LENGTH_SHORT).show()
+            }.create()
+
+        findViewById<Button>(R.id.btn3).setOnClickListener {
+            multiChoiceDialog.show()
+        }
     }
 }
